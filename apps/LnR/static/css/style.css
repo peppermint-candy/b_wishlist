@@ -1,0 +1,73 @@
+	
+div.ct {
+	vertical-align: top;
+	margin: 0px auto;
+	
+}
+
+div.box {
+	min-height: 350px;
+	width: 460px;
+	display: inline-block;
+	vertical-align: top;
+	margin:20px 20px;
+	border: 2px solid blue;
+}
+
+div.header {
+	width: 95%;
+	height: 40px;
+	vertical-align: top;
+	padding-left: 20px;
+	background-color: lightblue;
+	margin: 0 auto;
+}
+
+
+div.wishlist {
+	min-height: 150px;
+	width: 60%;
+	margin: 10px auto;
+	border: 2px solid teal;
+	padding-left: 20px;
+}
+
+a{
+	margin: 10px auto;
+	text-align: right;
+	display: inline-block;
+}
+
+h4 {
+	margin: 10px auto;
+	text-align: right;
+	display: inline-block;
+}
+
+h1 {
+	margin: 20px auto;
+	text-align: center;
+}
+
+h2 {
+	margin: 20px auto;
+	text-align: center;
+}
+
+p.label {
+	width: 180px;
+	height: 20px;
+	display: inline-block;
+	margin: 2px 10px;
+}
+
+table {
+	width: 70%;
+
+}
+
+fieldset {
+	width: 70%;
+	height: 180px;
+	margin: 20px auto;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>Wishlist</title>
+</head>
+<body>
+	<div class="ct">
+		<div class="header">
+			<h4>WELCOME!  {{ request.session.name }} | </h4>
+			<a href="{% url 'users' %}">Home</a>
+		</div>
+
+		<fieldset>
+			<legend>Create a New Wish List Item</legend>
+			<form action="/addingitem" method="post">{% csrf_token %}
+				<label>Item/Product:</label>
+				<input type="text" name="itemname"><br><br>
+				<input type="submit" value="Add">
+			</form>
+
+			{% if messages %}
+			{% for message in messages %}
+			<p style="color:red; font-weight: bold;">{{ message }}</p>
+			{% endfor %}
+			{% endif %}
+
+		</fieldset>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>Wishlist</title>
+</head>
+<body>
+	<div class="ct">
+		<div class="header">
+			<h4>WELCOME!  {{ request.session.name }} | </h4>
+			<a href="{% url 'users' %}">Home</a> |
+			<a href="/logoff">Log off</a>
+		</div>
+
+		<div class="wishlist">
+			<h3>Hello, {{ request.session.name }} </h3>
+			<h4>Your Wish List:</h4>	
+			<table>
+				<thead>
+					<th>Item</th>
+					<th>Added by</th>
+					<th>Date Added</th>
+					<th>Action</th>
+				</thead>
+				<tbody>
+					<!-- this list will show all the items for now -->
+					{% if hisitems %}
+					{% for item in hisitems %}
+
+					<tr>
+						<td> <a href="{% url 'itempage' id=item.id %}">{{ item.item }}</a> </td>
+						<td> {{ item.adduser.first_name }} </td>
+						<td> {{ item.created_at.date }} </td>
+						<td> <a href="{% url 'deleteitem' id=item.id %}">Delete</a> </td>
+					</tr>
+					{% endfor %}
+					{% endif %}
+
+					{% if hisotheritems %}
+					{% for item in hisotheritems %}
+
+					<tr>
+						<td> <a href="{% url 'itempage' id=item.id %}">{{ item.item }}</a> </td>
+						<td> {{ item.adduser.first_name }} </td>
+						<td> {{ item.created_at.date }} </td>
+						<td> <a href="{% url 'removeitem' id=item.id %}">Remove from my wishlist</a> </td>
+					</tr>
+					{% endfor %}
+					{% endif %}
+
+
+				</tbody>
+			</table>
+		</div>
+
+		<div class="wishlist">
+			<h4>Other Users' Wish List</h4>
+			<table>
+				<thead>
+					<th>Item</th>
+					<th>Added by</th>
+					<th>Date Added</th>
+					<th>Action</th>
+				</thead>
+				<tbody>
+					{% for item in othersitems %}
+					{% if item.joinuser != currentuser %}
+					<tr>
+						<td> <a href="{% url 'itempage' id=item.id %}">{{ item.item }}</a></td>
+						<td> {{ item.adduser.first_name }} </td>
+						<td> {{ item.created_at.date }} </td>
+						<td><a href="{% url 'joinninglist' id=item.id %}">Add to my Wishlist</a></td>
+					</tr>
+					{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<a href="/additem">Add Item</a>
+	</div>
+</body>
+</html>

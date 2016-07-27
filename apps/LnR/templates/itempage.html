@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>Log in and Registration Form</title>
+</head>
+<body>
+	<div class="header">
+		<h4>WELCOME!  {{ request.session.name }} | </h4>
+		<a href="{% url 'users' %}">Home</a> |
+		<a href="/logoff">Log off</a>
+	</div>
+
+	<div class="wishlist">
+
+		<h3>{{ item.item }} </h3>
+		<h4>Users who added this product /item under their wishlist:</h4>	
+
+		{% if item.joiner %}
+
+		<p>{{ item.joiner }}</p>
+
+		{% else %}
+		<p>No user has this product/item unser his/her wishlist, yet!</p>
+		{% endif %}
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<title>Log in and Registration Form</title>
+</head>
+<body>
+	<div class="ct">
+		<div class="box"><h1>Register</h1>
+
+			<form action='/register' method="post">
+				{% csrf_token %}
+				<p class="label" >Name:</p><input type="text" name="first_name"><br><br>
+				<p class="label" >Username:</p><input type="text" name="username"><br><br>
+				<p class="label" >Password:</p><input type="password" name="pw"><br>
+				<p>*Password should be at least 8 characters</p>
+				<p class="label" >Confirm Password:</p><input type="password" name="c_pw"><br><br>
+				<p class="label">Date Hired</p><input type="date" name="datehired" max="2015-12-31" min="1970-01-01"><br><br>
+				<input style="margin-left: 308px;" type="submit" value="Register">
+				{% if messages %}
+				{% for message in messages %}
+				{% if message.extra_tags == 'rg' %}
+				<p style="color:red; font-weight: bold;">{{ message }}</p>
+				{% endif %}
+				{% endfor %}
+				{% endif %}
+
+			</form>
+			<p>Alrady have an account, go ahead and log in!</p>
+
+		</div>
+
+		<div class="box">
+			<h2>Login</h2>
+			<form action="/login" method="post">
+				{% csrf_token %}
+				<p class="label">Username: </p><input type="text" name="elogin"><br><br>
+				<p class="label">Password: </p><input type="password" name="Lpw"><br><br>
+				{% if messages %}
+				{% for message in messages %}
+				{% if message.extra_tags == 'lg' %}
+				<p style="color:red; font-weight: bold;">{{ message }}</p>
+				{% endif %}
+				{% endfor %}
+				{% endif %}
+				<input style="margin-left: 325px;" type="submit" value="Login">
+			</form>
+	</div>
+</body>
+</html>
